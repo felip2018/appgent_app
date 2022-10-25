@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">appgent</string>
+    <string name="title_activity_application">application</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_main_navigator">MainNavigator</string>
+    <string name="title_home">Home</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_tabs">Tabs</string>
+
+    <string-array name="documents_array">
+        <item>Cedula de ciudadanía</item>
+        <item>Cedula de extranjería</item>
+        <item>Pasaporte</item>
+        <item>Tarjeta de identidad</item>
+    </string-array>
+
+</resources>
