@@ -2,15 +2,20 @@ package com.fgarzon.appgent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fgarzon.appgent.models.LoginResponse;
 import com.fgarzon.appgent.services.AuthenticationServices;
+
+import org.springframework.web.client.HttpClientErrorException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,19 +42,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Validación de campos
                 boolean validation = validateFields(username, password);
-                System.out.println("Validation Fields > "+(validation ? "OK" : "WRONG"));
                 if (validation) {
+
+                    ProgressDialog dialog = ProgressDialog.show(
+                            MainActivity.this,
+                            "Iniciar sesión",
+                            "Validando datos",
+                            true
+                    );
+
                     // Consumir el servicio de inicio de sesion
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            try {
-                                authenticationServices.login(username.getText().toString(), password.getText().toString());
-                            } catch (Exception e) {
-                                System.out.println(e);
-                            }
+                            LoginResponse loginResponse = authenticationServices.login(username.getText().toString(), password.getText().toString());
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    dialog.hide();
+                                    validateLoginResponse(loginResponse);
+                                }
+                            });
                         }
                     }).start();
+
                 }
             }
         });
@@ -63,8 +79,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void validateLoginResponse(LoginResponse loginResponse) {
+        if (loginResponse != null) {
+            System.out.println("Bienvenido: "+loginResponse.getData().getFirst_name());
+            Toast.makeText(MainActivity.this, "Bienvenido: "+loginResponse.getData().getFirst_name(), Toast.LENGTH_SHORT).show();
+        } else {
+            System.out.println("Verifique usuario y clave");
+            Toast.makeText(MainActivity.this, "Verifique usuario y clave", Toast.LENGTH_LONG).show();
+        }
+    }
+
     public boolean validateFields(EditText username, EditText password) {
-        System.out.println("User: "+username.getText());
         if (username.getText().toString().equals("")) {
             username.requestFocus();
             Toast.makeText(MainActivity.this, "Ingrese el usuario!", Toast.LENGTH_SHORT).show();

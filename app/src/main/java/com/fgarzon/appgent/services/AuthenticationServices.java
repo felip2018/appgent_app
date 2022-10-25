@@ -1,5 +1,7 @@
 package com.fgarzon.appgent.services;
 
+import android.os.NetworkOnMainThreadException;
+
 import com.fgarzon.appgent.models.LoginResponse;
 import com.fgarzon.appgent.models.Profile;
 
@@ -10,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -30,7 +33,7 @@ public class AuthenticationServices {
         System.out.println(response.getBody());
     }
 
-    public void getProfileTest() throws JSONException {
+    public void getProfiles() throws JSONException {
         String url = "https://ifeelsoftware.com/laravel/api/get-profiles";
 
         // Send POST request
@@ -48,7 +51,7 @@ public class AuthenticationServices {
 
     }
 
-    public void login(String username, String password) {
+    public LoginResponse login(String username, String password) {
         String url = "https://ifeelsoftware.com/laravel/api/login";
 
         // Set headers
@@ -72,9 +75,20 @@ public class AuthenticationServices {
             System.out.println(loginResponse.getData().getEmail());
             System.out.println("Status: "+loginResponse.getStatus());
 
-        } catch (Exception e) {
-            throw e;
+            return loginResponse;
+
+        } catch (HttpClientErrorException e) {
+            System.out.println("Something was wrong!");
+            System.out.println(e);
+
+            return null;
+        } catch (NetworkOnMainThreadException nte) {
+            System.out.println("Something was wrong!");
+            System.out.println(nte);
+
+            return null;
         }
+
 
     }
 
