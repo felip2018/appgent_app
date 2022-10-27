@@ -23,4 +23,11 @@
         android:name="com.fgarzon.appgent.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_close"
+        android:name="com.fgarzon.appgent.ui.close.CloseFragment"
+        android:label="fragment_close"
+        tools:layout="@layout/fragment_close" />
+
 </navigation>

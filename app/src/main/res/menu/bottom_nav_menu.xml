@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/bell"
-        android:title="Notificaciones" />
+        android:id="@+id/navigation_close"
+        android:icon="@drawable/onoffbutton"
+        android:title="Salir" />
 
     <item
         android:id="@+id/navigation_home"
@@ -13,7 +13,8 @@
         android:title="Inicio" />
 
     <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/user"
-        android:title="Perfil" />
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/bell"
+        android:title="Notificaciones" />
+
 </menu>

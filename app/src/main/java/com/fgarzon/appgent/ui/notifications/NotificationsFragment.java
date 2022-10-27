@@ -27,8 +27,6 @@ private FragmentNotificationsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -36,9 +34,6 @@ private FragmentNotificationsBinding binding;
         listView = root.findViewById(R.id.list_view);
 
         ArrayList<Notification> arrayList = new ArrayList<>();
-        arrayList.add(new Notification(1, "Actualizacion","Descripción del caso numero 1",0,"17 de octubre del 2022"));
-        arrayList.add(new Notification(1, "Inicio","Se ha dado inicio al proceso",0,"15 de octubre del 2022"));
-        arrayList.add(new Notification(1, "Registro exitoso","Su solicitud ha sido registrada",0,"14 de octubre del 2022"));
 
         NotificationsListAdapter myAdapter = new NotificationsListAdapter(this.getContext(), arrayList);
         listView.setAdapter(myAdapter);

@@ -40,9 +40,11 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Tabs.class);
+                startActivity(intent);
                 // Validación de campos
                 boolean validation = validateFields(username, password);
-                if (validation) {
+                /*if (validation) {
 
                     ProgressDialog dialog = ProgressDialog.show(
                             MainActivity.this,
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }).start();
 
-                }
+                }*/
             }
         });
 
