@@ -37,7 +37,7 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="felipegarxon@hotmail.comx"
+            android:text="felipegarxon@hotmail.com"
             style="@style/EditTextStyle"/>
         <TextView
             android:layout_width="match_parent"

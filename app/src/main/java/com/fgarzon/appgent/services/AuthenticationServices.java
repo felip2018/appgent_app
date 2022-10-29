@@ -4,6 +4,8 @@ import android.os.NetworkOnMainThreadException;
 
 import com.fgarzon.appgent.models.LoginResponse;
 import com.fgarzon.appgent.models.Profile;
+import com.fgarzon.appgent.models.RegisterData;
+import com.fgarzon.appgent.models.RegisterResponse;
 
 import org.json.JSONException;
 import org.springframework.http.HttpEntity;
@@ -33,27 +35,8 @@ public class AuthenticationServices {
         System.out.println(response.getBody());
     }
 
-    public void getProfiles() throws JSONException {
-        String url = "https://ifeelsoftware.com/laravel/api/get-profiles";
-
-        // Send POST request
-        ResponseEntity<Profile[]> responseEntity = restTemplate.getForEntity(url, Profile[].class);
-
-        // Check response
-        if (responseEntity.getStatusCode() == HttpStatus.OK) {
-            System.out.println("Request Successful: ");
-            Profile[] profiles = responseEntity.getBody();
-            System.out.println(profiles.length);
-        } else {
-            System.out.println("Request Failed");
-            System.out.println(responseEntity.getStatusCode());
-        }
-
-    }
-
     public LoginResponse login(String username, String password) {
         String url = "https://ifeelsoftware.com/laravel/api/login";
-
         // Set headers
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -88,8 +71,52 @@ public class AuthenticationServices {
 
             return null;
         }
+    }
 
+    public boolean register(RegisterData registerData) {
+        String url = "https://ifeelsoftware.com/laravel/api/register-person-user";
+        // Set headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
+        // Set body
+        Map<String, String> body = new HashMap<>();
+        body.put("document_type_id", String.valueOf(registerData.getDocumentTypeId()));
+        body.put("document", String.valueOf(registerData.getDocument()));
+        body.put("city_id", String.valueOf(registerData.getCityId()));
+        body.put("address", registerData.getAddress());
+        body.put("first_name", registerData.getFirstName());
+        body.put("second_name", registerData.getSecondName());
+        body.put("first_lastname", registerData.getFirstLastname());
+        body.put("second_lastname", registerData.getSecondLastname());
+        body.put("gender", "no_data");
+        body.put("phone", registerData.getPhone());
+        body.put("email", registerData.getEmail());
+        body.put("profile_id", String.valueOf(registerData.getProfileId()));
+        body.put("password", registerData.getPassword());
+
+        // Build request
+        HttpEntity<Map<String, String>> entity = new HttpEntity<>(body, headers);
+
+        try {
+            // Send POST request
+            ResponseEntity<RegisterResponse> responseEntity = restTemplate.postForEntity(url, entity, RegisterResponse.class);
+            // Check response
+            System.out.println("Request Register Successful");
+            return true;
+
+        } catch (HttpClientErrorException e) {
+            System.out.println("Something was wrong HttpClientErrorException!");
+            System.out.println(e);
+            System.out.println(e.getResponseBodyAsString());
+
+            return false;
+        } catch (NetworkOnMainThreadException nte) {
+            System.out.println("Something was wrong NetworkOnMainThreadException!");
+            System.out.println(nte);
+
+            return false;
+        }
     }
 
 }

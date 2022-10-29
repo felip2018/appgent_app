@@ -3,10 +3,10 @@ package com.fgarzon.appgent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.NetworkOnMainThreadException;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,11 +15,12 @@ import android.widget.Toast;
 import com.fgarzon.appgent.models.LoginResponse;
 import com.fgarzon.appgent.services.AuthenticationServices;
 
-import org.springframework.web.client.HttpClientErrorException;
-
 public class MainActivity extends AppCompatActivity {
 
     AuthenticationServices authenticationServices;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor sharedPreferencesEditor;
+
     Button btnLogin, btnRegister;
     EditText username, password;
 
@@ -28,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+        sharedPreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+        sharedPreferencesEditor = sharedPreferences.edit();
+
+        boolean isLogged = sharedPreferences.getBoolean("isLogged", false);
+
+        if (isLogged) {
+            // A session already exists, navigate to application
+            Intent intent = new Intent(MainActivity.this, Tabs.class);
+            startActivity(intent);
+        }
 
         authenticationServices = new AuthenticationServices();
 
@@ -81,8 +93,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void validateLoginResponse(LoginResponse loginResponse) {
         if (loginResponse != null) {
-            System.out.println("Bienvenido: "+loginResponse.getData().getFirst_name());
-            Toast.makeText(MainActivity.this, "Bienvenido: "+loginResponse.getData().getFirst_name(), Toast.LENGTH_SHORT).show();
+            sharedPreferencesEditor.putBoolean("isLogged", true);
+            sharedPreferencesEditor.putString("document", loginResponse.getData().getDocument());
+            sharedPreferencesEditor.putString("address", loginResponse.getData().getAddress());
+            sharedPreferencesEditor.putString("firstName", loginResponse.getData().getFirstName());
+            sharedPreferencesEditor.putString("secondName", loginResponse.getData().getSecondName());
+            sharedPreferencesEditor.putString("firstLastname", loginResponse.getData().getFirstLastname());
+            sharedPreferencesEditor.putString("secondLastname", loginResponse.getData().getSecondLastname());
+            sharedPreferencesEditor.putString("phone", loginResponse.getData().getPhone());
+            sharedPreferencesEditor.putString("email", loginResponse.getData().getEmail());
+            sharedPreferencesEditor.putString("personId", loginResponse.getData().getPersonId());
+            sharedPreferencesEditor.putString("profileId", loginResponse.getData().getProfileId());
+            sharedPreferencesEditor.putString("username", loginResponse.getData().getUsername());
+            sharedPreferencesEditor.putString("validateAccount", loginResponse.getData().getValidateAccount());
+            sharedPreferencesEditor.putString("registerStatus", loginResponse.getData().getRegisterStatus());
+            sharedPreferencesEditor.putString("profile", loginResponse.getData().getProfile());
+            sharedPreferencesEditor.putString("abbreviation", loginResponse.getData().getAbbreviation());
+            sharedPreferencesEditor.putString("city", loginResponse.getData().getCity());
+
+            sharedPreferencesEditor.commit();
+
+            // Toast.makeText(MainActivity.this, "Bienvenido: "+loginResponse.getData().getFirst_name(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, Tabs.class);
+            startActivity(intent);
+
         } else {
             System.out.println("Verifique usuario y clave");
             Toast.makeText(MainActivity.this, "Verifique usuario y clave", Toast.LENGTH_LONG).show();

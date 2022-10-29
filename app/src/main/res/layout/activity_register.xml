@@ -30,8 +30,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="20dp"
-            android:layout_weight="4"
-            >
+            android:layout_weight="4">
 
             <TextView
                 android:layout_width="match_parent"
@@ -43,7 +42,8 @@
                 style="@style/EditTextStyle"
                 android:inputType="text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="martha isabel"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -55,7 +55,8 @@
                 style="@style/EditTextStyle"
                 android:inputType="text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="romero lopez"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -75,10 +76,12 @@
                 android:text="Número de identificación"
                 style="@style/TextViewStyle"/>
             <EditText
+                android:id="@+id/field_document"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/EditTextStyle"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:text="209258746"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -86,10 +89,12 @@
                 android:text="Teléfono"
                 style="@style/TextViewStyle"/>
             <EditText
+                android:id="@+id/field_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/EditTextStyle"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:text="3114568954"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -97,9 +102,24 @@
                 android:text="Correo electrónico"
                 style="@style/TextViewStyle"/>
             <EditText
+                android:id="@+id/field_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextStyle"/>
+                style="@style/EditTextStyle"
+                android:text="marthai@correo.com"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contraseña"
+                style="@style/TextViewStyle"/>
+            <EditText
+                android:id="@+id/field_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/EditTextStyle"
+                android:text="123"
+                android:inputType="textPassword"/>
 
         </LinearLayout>
 

@@ -1,6 +1,8 @@
 package com.fgarzon.appgent.ui.home;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,18 +22,28 @@ import com.fgarzon.appgent.RegisterCase;
 import com.fgarzon.appgent.adapters.CasesListAdapter;
 import com.fgarzon.appgent.databinding.FragmentHomeBinding;
 import com.fgarzon.appgent.models.Case;
+import com.fgarzon.appgent.storage.StorageServices;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-private FragmentHomeBinding binding;
+    SharedPreferences sharedPreferences;
+    // SharedPreferences.Editor sharedPreferencesEditor;
+
+    private FragmentHomeBinding binding;
     Intent intent;
     ListView listView;
     Button btnNewCase;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
+
+        sharedPreferences = this.getActivity().getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+        // sharedPreferencesEditor = sharedPreferences.edit();
+
+        String firstName = sharedPreferences.getString("firstName", "no_data");
+        Toast.makeText(this.getContext(), "Bienvenido: "+firstName, Toast.LENGTH_LONG).show();
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

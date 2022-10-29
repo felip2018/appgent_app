@@ -53,16 +53,6 @@
         android:layout_weight="2">
 
         <Button
-            android:id="@+id/btn_cancel_close"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#068AA7"
-            android:layout_margin="5dp"
-            android:text="Cancelar"/>
-
-        <Button
             android:id="@+id/btn_accept_close"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -4,37 +4,55 @@ public class UserData {
 
     private String document;
     private String address;
-    private String first_name;
-    private String second_name;
-    private String first_lastname;
-    private String second_lastname;
+    private String firstName;
+    private String secondName;
+    private String firstLastname;
+    private String secondLastname;
     private String phone;
     private String email;
-    private String person_id;
-    private String profile_id;
+    private String userId;
+    private String personId;
+    private String profileId;
     private String username;
-    private String validate_account;
-    private String register_status;
+    private String validateAccount;
+    private String registerStatus;
     private String profile;
     private String abbreviation;
     private String city;
 
     public UserData() {}
 
-    public UserData(String document, String address, String first_name, String second_name, String first_lastname, String second_lastname, String phone, String email, String person_id, String profile_id, String username, String validate_account, String register_status, String profile, String abbreviation, String city) {
+    public UserData(String document,
+                    String address,
+                    String firstName,
+                    String secondName,
+                    String firstLastname,
+                    String secondLastname,
+                    String phone,
+                    String email,
+                    String userId,
+                    String personId,
+                    String profileId,
+                    String username,
+                    String validateAccount,
+                    String registerStatus,
+                    String profile,
+                    String abbreviation,
+                    String city) {
         this.document = document;
         this.address = address;
-        this.first_name = first_name;
-        this.second_name = second_name;
-        this.first_lastname = first_lastname;
-        this.second_lastname = second_lastname;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.firstLastname = firstLastname;
+        this.secondLastname = secondLastname;
         this.phone = phone;
+        this.userId = userId;
         this.email = email;
-        this.person_id = person_id;
-        this.profile_id = profile_id;
+        this.personId = personId;
+        this.profileId = profileId;
         this.username = username;
-        this.validate_account = validate_account;
-        this.register_status = register_status;
+        this.validateAccount = validateAccount;
+        this.registerStatus = registerStatus;
         this.profile = profile;
         this.abbreviation = abbreviation;
         this.city = city;
@@ -56,36 +74,36 @@ public class UserData {
         this.address = address;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSecond_name() {
-        return second_name;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setSecond_name(String second_name) {
-        this.second_name = second_name;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
-    public String getFirst_lastname() {
-        return first_lastname;
+    public String getFirstLastname() {
+        return firstLastname;
     }
 
-    public void setFirst_lastname(String first_lastname) {
-        this.first_lastname = first_lastname;
+    public void setFirstLastname(String firstLastname) {
+        this.firstLastname = firstLastname;
     }
 
-    public String getSecond_lastname() {
-        return second_lastname;
+    public String getSecondLastname() {
+        return secondLastname;
     }
 
-    public void setSecond_lastname(String second_lastname) {
-        this.second_lastname = second_lastname;
+    public void setSecondLastname(String secondLastname) {
+        this.secondLastname = secondLastname;
     }
 
     public String getPhone() {
@@ -104,20 +122,20 @@ public class UserData {
         this.email = email;
     }
 
-    public String getPerson_id() {
-        return person_id;
+    public String getPersonId() {
+        return personId;
     }
 
-    public void setPerson_id(String person_id) {
-        this.person_id = person_id;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
-    public String getProfile_id() {
-        return profile_id;
+    public String getProfileId() {
+        return profileId;
     }
 
-    public void setProfile_id(String profile_id) {
-        this.profile_id = profile_id;
+    public void setProfileId(String profileId) {
+        this.profileId = profileId;
     }
 
     public String getUsername() {
@@ -128,20 +146,20 @@ public class UserData {
         this.username = username;
     }
 
-    public String getValidate_account() {
-        return validate_account;
+    public String getValidateAccount() {
+        return validateAccount;
     }
 
-    public void setValidate_account(String validate_account) {
-        this.validate_account = validate_account;
+    public void setValidateAccount(String validateAccount) {
+        this.validateAccount = validateAccount;
     }
 
-    public String getRegister_status() {
-        return register_status;
+    public String getRegisterStatus() {
+        return registerStatus;
     }
 
-    public void setRegister_status(String register_status) {
-        this.register_status = register_status;
+    public void setRegisterStatus(String registerStatus) {
+        this.registerStatus = registerStatus;
     }
 
     public String getProfile() {
@@ -166,5 +184,13 @@ public class UserData {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
