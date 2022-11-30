@@ -22,7 +22,6 @@ import com.fgarzon.appgent.RegisterCase;
 import com.fgarzon.appgent.adapters.CasesListAdapter;
 import com.fgarzon.appgent.databinding.FragmentHomeBinding;
 import com.fgarzon.appgent.models.Case;
-import com.fgarzon.appgent.storage.StorageServices;
 
 import java.util.ArrayList;
 
@@ -40,7 +39,6 @@ public class HomeFragment extends Fragment {
             ViewGroup container, Bundle savedInstanceState) {
 
         sharedPreferences = this.getActivity().getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
-        // sharedPreferencesEditor = sharedPreferences.edit();
 
         String firstName = sharedPreferences.getString("firstName", "no_data");
         Toast.makeText(this.getContext(), "Bienvenido: "+firstName, Toast.LENGTH_LONG).show();
